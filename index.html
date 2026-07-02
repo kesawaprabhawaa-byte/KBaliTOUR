@@ -1,520 +1,1798 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KBaliTOUR</title>
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
-    scroll-behavior:smooth;
-}
-
-body{
-    background:#fff;
-    color:#333;
-    overflow-x:hidden;
-}
-
-/* ======================
-   GLOBAL
-====================== */
-
-.container{
-    width:90%;
-    max-width:1200px;
-    margin:auto;
-}
-
-.section-title{
-    text-align:center;
-    margin-bottom:60px;
-}
-
-.section-title h2{
-    font-size:clamp(2rem,5vw,3rem);
-    margin-bottom:15px;
-}
-
-.section-title p{
-    color:#666;
-    line-height:1.6;
-}
-
-/* ======================
-   LOGO
-====================== */
-
-.logo{
-    position:absolute;
-    top:25px;
-    left:50px;
-    z-index:999;
-    color:white;
-    font-size:32px;
-    font-weight:700;
-}
-
-/* ======================
-   HERO
-====================== */
-
-.hero{
-    height:100vh;
-    background:url("geminiatv.jpg") center center/cover;
-    position:relative;
-    display:flex;
-    align-items:center;
-}
-
-.hero::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:rgba(0,0,0,.55);
-}
-
-.hero-content{
-    position:relative;
-    z-index:2;
-    color:white;
-    width:90%;
-    max-width:700px;
-    margin-left:8%;
-}
-
-.hero-content h1{
-    font-size:clamp(3rem,8vw,5rem);
-    line-height:1.1;
-    margin-bottom:20px;
-}
-
-.hero-content p{
-    font-size:clamp(1rem,3vw,1.3rem);
-    line-height:1.7;
-    margin-bottom:35px;
-}
-
-.btn-group{
-    display:flex;
-    gap:15px;
-    flex-wrap:wrap;
-}
-
-.btn-primary,
-.btn-secondary{
-    padding:15px 30px;
-    border-radius:50px;
-    text-decoration:none;
-    font-weight:bold;
-    transition:.3s;
-}
-
-.btn-primary{
-    background:#ff7a00;
-    color:white;
-}
-
-.btn-primary:hover{
-    background:#e26800;
-}
-
-.btn-secondary{
-    border:2px solid white;
-    color:white;
-}
-
-.btn-secondary:hover{
-    background:white;
-    color:black;
-}
-
-/* ======================
-   SERVICES
-====================== */
-
-.services{
-    padding:100px 0;
-}
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:25px;
-}
-
-.card{
-    background:white;
-    padding:35px;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
-    transition:.3s;
-}
-
-.card:hover{
-    transform:translateY(-10px);
-}
-
-.card span{
-    font-size:50px;
-}
-
-.card h3{
-    margin:20px 0;
-    font-size:1.4rem;
-}
-
-.card p{
-    color:#666;
-    line-height:1.6;
-}
-
-/* ======================
-   WHY US
-====================== */
-
-.why-us{
-    background:#f7f7f7;
-    padding:100px 0;
-}
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:30px;
-    text-align:center;
-}
-
-.stats h3{
-    color:#ff7a00;
-    font-size:42px;
-    margin-bottom:10px;
-}
-
-/* ======================
-   DESTINATIONS
-====================== */
-
-.destinations{
-    padding:100px 0;
-}
-
-.destination-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:25px;
-}
-
-.destination{
-    overflow:hidden;
-    border-radius:20px;
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-}
-
-.destination img{
-    width:100%;
-    height:250px;
-    object-fit:cover;
-}
-
-.destination h3{
-    padding:20px;
-}
-
-/* ======================
-   TESTIMONIALS
-====================== */
-
-.testimonials{
-    background:#f7f7f7;
-    padding:100px 0;
-}
-
-.testimonial-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:25px;
-}
-
-.testimonial{
-    background:white;
-    padding:30px;
-    border-radius:20px;
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-}
-
-.testimonial h4{
-    margin-top:20px;
-}
-
-/* ======================
-   CTA
-====================== */
-
-.cta{
-    background:#ff7a00;
-    color:white;
-    text-align:center;
-    padding:100px 20px;
-}
-
-.cta h2{
-    font-size:clamp(2rem,6vw,3rem);
-    margin-bottom:20px;
-}
-
-.cta p{
-    margin-bottom:30px;
-    font-size:1.1rem;
-}
-
-.cta a{
-    background:white;
-    color:#ff7a00;
-    text-decoration:none;
-    padding:15px 35px;
-    border-radius:50px;
-    font-weight:bold;
-}
-
-/* ======================
-   FOOTER
-====================== */
-
-footer{
-    background:#111;
-    color:white;
-    text-align:center;
-    padding:50px 20px;
-}
-
-footer h3{
-    margin-bottom:10px;
-}
-
-footer p{
-    margin:5px 0;
-}
-
-/* ======================
-   FLOATING WA
-====================== */
-
-.whatsapp-float{
-    position:fixed;
-    right:25px;
-    bottom:25px;
-    width:65px;
-    height:65px;
-    border-radius:50%;
-    background:#25D366;
-    color:white;
-    text-decoration:none;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:30px;
-    box-shadow:0 10px 25px rgba(0,0,0,.25);
-    z-index:999;
-}
-
-/* ======================
-   MOBILE
-====================== */
-
-@media(max-width:768px){
-
-.logo{
-    left:20px;
-    font-size:24px;
-}
-
-.hero{
-    text-align:center;
-}
-
-.hero-content{
-    margin:auto;
-    padding:0 20px;
-}
-
-.btn-group{
-    justify-content:center;
-}
-
-.stats{
-    grid-template-columns:1fr 1fr;
-}
-
-}
-
-@media(max-width:480px){
-
-.hero{
-    min-height:100vh;
-}
-
-.hero-content h1{
-    font-size:2.7rem;
-}
-
-.hero-content p{
-    font-size:1rem;
-}
-
-.btn-primary,
-.btn-secondary{
-    width:100%;
-    text-align:center;
-}
-
-.stats{
-    grid-template-columns:1fr;
-}
-
-.whatsapp-float{
-    width:55px;
-    height:55px;
-    font-size:24px;
-}
-
-}
-
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#111" />
+  <title>KBaliTOUR — Tour & Travel in Bali</title>
+
+  <style>
+    :root{
+      --primary:#ff7a00;
+      --dark:#111;
+      --bg:#ffffff;
+      --gray:#f6f6f6;
+      --muted:#6b7280;
+      --text:#0b1220;
+
+      --radius-xl:26px;
+      --radius-lg:18px;
+      --radius-md:14px;
+      --radius-sm:12px;
+
+      --shadow-1: 0 10px 30px rgba(17, 24, 39, .10);
+      --shadow-2: 0 20px 60px rgba(17, 24, 39, .18);
+      --shadow-soft: 0 12px 30px rgba(0,0,0,.08);
+
+      --glass-bg: rgba(255, 255, 255, .10);
+      --glass-border: rgba(255, 255, 255, .22);
+      --glass-blur: 14px;
+
+      --container: 1120px;
+
+      --ease: cubic-bezier(.2,.8,.2,1);
+
+      --nav-h: 68px;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+      overflow-x:hidden;
+    }
+
+    img, video{ max-width:100%; display:block; }
+
+    a{ color:inherit; text-decoration:none; }
+    button{ font:inherit; }
+
+    .container{
+      width: min(100% - 40px, var(--container));
+      margin-inline:auto;
+    }
+
+    .sr-only{
+      position:absolute;
+      width:1px;
+      height:1px;
+      padding:0;
+      margin:-1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      white-space:nowrap;
+      border:0;
+    }
+
+    /* ======================
+       Typography
+    ====================== */
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background: rgba(255, 122, 0, .10);
+      color: var(--primary);
+      font-weight:700;
+      letter-spacing:.2px;
+      border: 1px solid rgba(255, 122, 0, .22);
+    }
+
+    h1,h2,h3{ margin:0; }
+    p{ margin:0; color: var(--muted); line-height:1.65; }
+
+    .display{
+      font-weight:900;
+      letter-spacing:-.03em;
+      line-height:1.05;
+      font-size: clamp(2.2rem, 8vw, 4.1rem);
+      color:#fff;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:22px;
+    }
+
+    .section-title h2{
+      font-size: clamp(1.6rem, 5vw, 2.7rem);
+      letter-spacing:-.02em;
+      color: #0c1626;
+    }
+
+    .section-title p{ margin-top:10px; }
+
+    .subhead{
+      color: rgba(255,255,255,.88);
+      font-size: clamp(1rem, 3.2vw, 1.2rem);
+      margin-top:14px;
+    }
+
+    /* ======================
+       Buttons
+    ====================== */
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 14px 18px;
+      border-radius:999px;
+      border:1px solid transparent;
+      transition: transform .22s var(--ease), box-shadow .22s var(--ease), background .22s var(--ease), border-color .22s var(--ease);
+      will-change:transform;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn:active{ transform: translateY(1px) scale(.99); }
+
+    .btn-primary{
+      background: var(--primary);
+      color:#fff;
+      box-shadow: 0 14px 40px rgba(255, 122, 0, .30);
+    }
+    .btn-primary:hover{ background:#e46c00; box-shadow: 0 18px 55px rgba(255, 122, 0, .34); transform: translateY(-2px); }
+
+    .btn-ghost{
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.18);
+      color:#fff;
+      backdrop-filter: blur(var(--glass-blur));
+    }
+    .btn-ghost:hover{
+      background: rgba(255,255,255,.14);
+      border-color: rgba(255,255,255,.28);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline{
+      background:#fff;
+      border-color: rgba(17,17,17,.18);
+      color:#0c1626;
+      box-shadow: var(--shadow-soft);
+    }
+    .btn-outline:hover{ transform: translateY(-2px); box-shadow: var(--shadow-1); }
+
+    .btn-dark{
+      background: var(--dark);
+      color:#fff;
+      box-shadow: var(--shadow-1);
+    }
+    .btn-dark:hover{ transform: translateY(-2px); box-shadow: var(--shadow-2); background:#0a0f1d; }
+
+    .btn-sm{ padding: 10px 14px; font-weight:800; font-size:.95rem; }
+
+    /* ======================
+       Nav
+    ====================== */
+
+    .nav{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      height: var(--nav-h);
+      z-index: 1000;
+      transition: background .25s var(--ease), border-color .25s var(--ease), box-shadow .25s var(--ease), transform .25s var(--ease);
+      background: rgba(17, 17, 17, 0);
+      border-bottom: 1px solid rgba(255,255,255,.0);
+    }
+
+    .nav-inner{
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      width: min(100% - 32px, var(--container));
+      margin-inline:auto;
+    }
+
+    .nav--scrolled{
+      background: rgba(17, 17, 17, .55);
+      border-bottom: 1px solid rgba(255,255,255,.16);
+      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+      backdrop-filter: blur(var(--glass-blur));
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width: 0;
+    }
+
+    .brand-mark{
+      width:40px;
+      height:40px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.22);
+      box-shadow: 0 16px 50px rgba(255, 122, 0, .18);
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+
+    /* Use provided logo.png */
+    .brand-mark::before{
+      content:"";
+      width: 30px;
+      height: 30px;
+      display:block;
+      background-repeat:no-repeat;
+      background-position:center;
+      background-size:contain;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,.28));
+      background-image: url("logo.png");
+      transform: translateY(1px);
+    }
+
+    .brand-mark::after{ content:none; }
+
+    .brand-text{
+
+
+      color:#fff;
+      font-weight: 950;
+      letter-spacing: -.02em;
+      font-size: 1.12rem;
+      white-space:nowrap;
+    }
+
+    .nav-actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .nav-links{
+      display:none;
+      gap:18px;
+      align-items:center;
+    }
+
+    .nav-link{
+      color: rgba(255,255,255,.88);
+      font-weight: 800;
+      font-size:.95rem;
+      padding:10px 10px;
+      border-radius: 14px;
+      transition: background .2s var(--ease), transform .2s var(--ease);
+    }
+
+    .nav-link:hover{ background: rgba(255,255,255,.10); transform: translateY(-1px); }
+
+    .hamburger{
+      width:44px;
+      height:44px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:4px;
+      flex-direction:column;
+      cursor:pointer;
+      transition: background .2s var(--ease), border-color .2s var(--ease), transform .2s var(--ease);
+    }
+
+    .hamburger:hover{ background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.24); transform: translateY(-1px); }
+
+    .hamburger span{
+      width:18px;
+      height:2px;
+      background: rgba(255,255,255,.9);
+      border-radius: 999px;
+      display:block;
+    }
+
+    .mobile-menu{
+      position:absolute;
+      top: calc(var(--nav-h) - 8px);
+      left: 16px;
+      right: 16px;
+      background: rgba(17,17,17,.72);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 18px;
+      padding: 14px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.35);
+      backdrop-filter: blur(var(--glass-blur));
+      transform: translateY(-10px);
+      opacity:0;
+      pointer-events:none;
+      transition: transform .22s var(--ease), opacity .22s var(--ease);
+    }
+
+    .mobile-menu--open{
+      transform: translateY(0);
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    .mobile-menu a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 12px 12px;
+      border-radius: 14px;
+      color: rgba(255,255,255,.92);
+      font-weight: 900;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      margin-bottom:10px;
+    }
+    .mobile-menu a:last-child{ margin-bottom:0; }
+
+    /* ======================
+       Hero
+    ====================== */
+
+    .hero{
+      min-height: 100vh;
+      position:relative;
+      padding-top: calc(var(--nav-h) + 24px);
+      display:flex;
+      align-items:flex-end;
+    }
+
+    .hero-media{
+      position:absolute;
+      inset:0;
+      background: url("geminiatv.jpg") center / cover no-repeat;
+    }
+
+    .hero-media::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.65) 0%, rgba(0,0,0,.35) 40%, rgba(0,0,0,.62) 100%);
+    }
+
+    .hero-inner{
+      position:relative;
+      width: 100%;
+      padding: 28px 0 46px;
+    }
+
+    .hero-card{
+      max-width: 780px;
+      background: rgba(0,0,0,.25);
+      border: 1px solid rgba(255,255,255,.16);
+      backdrop-filter: blur(var(--glass-blur));
+      border-radius: var(--radius-xl);
+      box-shadow: 0 18px 60px rgba(0,0,0,.30);
+      padding: 22px;
+    }
+
+    .hero-headline{ margin-top: 14px; }
+
+    .hero-sub{ margin-top: 14px; }
+
+    .hero-cta{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin-top: 18px;
+    }
+
+    .scroll-indicator{
+      margin-top: 18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      color: rgba(255,255,255,.78);
+      font-weight: 800;
+      letter-spacing:.2px;
+      user-select:none;
+    }
+
+    .mouse{
+      width: 26px;
+      height: 42px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.45);
+      position:relative;
+    }
+    .mouse::after{
+      content:"";
+      width:6px;
+      height:6px;
+      border-radius:999px;
+      background: rgba(255,255,255,.85);
+      position:absolute;
+      left:50%;
+      top: 11px;
+      transform: translateX(-50%);
+      animation: wheel 1.6s var(--ease) infinite;
+    }
+
+    @keyframes wheel{
+      0%{ opacity:0; transform: translateX(-50%) translateY(-2px); }
+      20%{ opacity:1; }
+      60%{ opacity:1; transform: translateX(-50%) translateY(10px); }
+      100%{ opacity:0; transform: translateX(-50%) translateY(14px); }
+    }
+
+    /* ======================
+       General sections
+    ====================== */
+
+    section{ position:relative; }
+
+    .section{
+      padding: 72px 0;
+    }
+
+    .card-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    @media (min-width: 680px){
+      .hero-inner{ padding: 40px 0 56px; }
+      .hero-card{ padding: 26px; }
+      .hero-cta{ flex-direction:row; flex-wrap:wrap; }
+      .card-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    }
+
+    @media (min-width: 980px){
+      .nav-links{ display:flex; }
+      .hamburger{ display:none; }
+      .mobile-menu{ display:none; }
+      .card-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .hero-inner{ padding: 50px 0 62px; }
+    }
+
+    /* ======================
+       Reveal animations
+    ====================== */
+
+    .reveal{
+      opacity:0;
+      transform: translateY(14px);
+      transition: opacity .7s var(--ease), transform .7s var(--ease);
+    }
+    .reveal--in{
+      opacity:1;
+      transform: translateY(0);
+    }
+
+    /* ======================
+       Premium cards
+    ====================== */
+
+    .activity-card{
+      background: #fff;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(17,17,17,.06);
+      overflow:hidden;
+      transition: transform .22s var(--ease), box-shadow .22s var(--ease);
+      will-change:transform;
+    }
+
+    .activity-card:hover{ transform: translateY(-4px); box-shadow: var(--shadow-1); }
+
+    .activity-media{
+      position:relative;
+      aspect-ratio: 16/10;
+      background: var(--gray);
+    }
+
+    .activity-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transform: scale(1.01);
+      transition: transform .55s var(--ease);
+    }
+
+    .activity-card:hover .activity-media img{ transform: scale(1.06); }
+
+    .activity-media::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.0) 0%, rgba(0,0,0,.18) 70%, rgba(0,0,0,.30) 100%);
+      opacity:.7;
+      pointer-events:none;
+    }
+
+    .activity-body{ padding: 16px; }
+    .activity-body h3{ font-size: 1.18rem; font-weight: 950; letter-spacing:-.02em; }
+    .activity-body p{ margin-top:8px; }
+
+    .activity-footer{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-top: 14px;
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius:999px;
+      background: rgba(255, 122, 0, .10);
+      color: var(--primary);
+      border: 1px solid rgba(255, 122, 0, .20);
+      font-weight: 900;
+      font-size: .92rem;
+      white-space:nowrap;
+    }
+
+    /* ======================
+       Media blocks
+    ====================== */
+
+    .media-slider{
+      border-radius: var(--radius-xl);
+      overflow:hidden;
+      border: 1px solid rgba(17,17,17,.08);
+      box-shadow: var(--shadow-soft);
+      background: var(--gray);
+    }
+
+    .slider-viewport{
+      position:relative;
+      aspect-ratio: 16/10;
+    }
+
+    .slider-item{
+      position:absolute;
+      inset:0;
+      opacity:0;
+      transform: scale(1.02);
+      transition: opacity .35s var(--ease), transform .55s var(--ease);
+    }
+
+    .slider-item--active{ opacity:1; transform: scale(1.0); }
+
+    .slider-item img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .video-box{
+      border-radius: var(--radius-lg);
+      overflow:hidden;
+      background: #000;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .video-box video{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius: var(--radius-lg);
+    }
+
+    .slider-controls{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 14px;
+      border-top: 1px solid rgba(17,17,17,.07);
+      background: rgba(255,255,255,.75);
+    }
+
+    .dots{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      justify-content:center;
+      flex:1;
+    }
+
+    .dot{
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(17,17,17,.15);
+      background: rgba(17,17,17,.06);
+      transition: transform .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease);
+    }
+    .dot--active{ background: rgba(255,122,0,.95); border-color: rgba(255,122,0,.95); transform: scale(1.15); }
+
+    .slider-btn{
+      width:42px;
+      height:42px;
+      border-radius: 16px;
+      border: 1px solid rgba(17,17,17,.10);
+      background: rgba(255,255,255,.85);
+      cursor:pointer;
+      transition: transform .2s var(--ease), box-shadow .2s var(--ease), background .2s var(--ease);
+      box-shadow: 0 10px 25px rgba(0,0,0,.06);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      user-select:none;
+    }
+    .slider-btn:hover{ transform: translateY(-2px); background:#fff; box-shadow: var(--shadow-1); }
+
+    .section-split{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      align-items:start;
+    }
+
+    @media (min-width: 980px){
+      .section-split{ grid-template-columns: 1.08fr .92fr; gap: 22px; }
+    }
+
+    /* ======================
+       Pricing cards
+    ====================== */
+
+    .pricing-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    @media (min-width: 680px){
+      .pricing-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    }
+
+    @media (min-width: 980px){
+      .pricing-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    .price-card{
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(17,17,17,.08);
+      border-radius: var(--radius-lg);
+      overflow:hidden;
+      box-shadow: var(--shadow-soft);
+      transition: transform .22s var(--ease), box-shadow .22s var(--ease);
+      position:relative;
+    }
+
+    .price-card:hover{ transform: translateY(-4px); box-shadow: var(--shadow-1); }
+
+    .price-head{
+      padding: 16px 16px 12px;
+      background: linear-gradient(180deg, rgba(255,122,0,.14), rgba(255,122,0,0));
+      border-bottom: 1px solid rgba(17,17,17,.06);
+    }
+
+    .price-head h3{
+      font-size: 1.06rem;
+      letter-spacing:-.02em;
+      font-weight: 950;
+      color: #0c1626;
+    }
+
+    .price-value{
+      margin-top:10px;
+      display:flex;
+      align-items:baseline;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .price-value strong{
+      font-size: 1.6rem;
+      color: var(--primary);
+      font-weight: 1000;
+      letter-spacing:-.02em;
+    }
+
+    .included-chip{
+      display:inline-flex;
+      align-items:center;
+      padding: 8px 10px;
+      border-radius:999px;
+      border: 1px solid rgba(17,17,17,.08);
+      background: rgba(255,255,255,.85);
+      color:#0c1626;
+      font-weight: 900;
+      font-size: .92rem;
+    }
+
+    .price-body{ padding: 14px 16px 16px; }
+
+    .feature-list{
+      list-style:none;
+      padding:0;
+      margin: 0;
+      display:grid;
+      gap:8px;
+    }
+
+    .feature-list li{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      color: var(--muted);
+      font-weight: 750;
+    }
+
+    .check{
+      width:20px;
+      height:20px;
+      border-radius: 8px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(255,122,0,.12);
+      border: 1px solid rgba(255,122,0,.18);
+      color: var(--primary);
+      flex: 0 0 auto;
+      margin-top:2px;
+      font-weight: 1000;
+    }
+
+    /* ======================
+       Swing/hero overlays
+    ====================== */
+
+    .video-hero{
+      border-radius: var(--radius-xl);
+      overflow:hidden;
+      position:relative;
+      box-shadow: var(--shadow-soft);
+      background:#000;
+      border: 1px solid rgba(17,17,17,.06);
+    }
+
+    .video-hero video{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      object-position: center;
+      display:block;
+    }
+
+
+    /* Portrait video heroes (1080:1920) */
+    .video-hero{
+      aspect-ratio: 1080 / 1920;
+    }
+
+
+    /* Portrait videos (Swing at Alas Arum Bali) */
+    .video-hero--portrait{
+      aspect-ratio: 1080 / 1920;
+    }
+
+
+    /* Mobile responsiveness for video heroes */
+    @media (max-width: 520px){
+      .video-hero{
+        border-radius: 18px;
+      }
+      .video-hero .video-hero-content{
+        padding: 14px;
+      }
+      .video-hero-content h3{
+        font-size: 1.25rem;
+      }
+      .video-hero-content p{
+        font-size: .98rem;
+      }
+      /* Tubing is already its own video element; no aspect-ratio overrides here. */
+    }
+
+
+
+
+    .video-hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.25) 45%, rgba(0,0,0,.65) 100%);
+      pointer-events:none;
+    }
+
+    .video-hero .video-hero-content{
+      position:absolute;
+      inset:auto 0 0 0;
+      padding: 18px;
+      color:#fff;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      z-index:2;
+    }
+
+    .video-hero-content h3{
+      font-size: 1.55rem;
+      letter-spacing:-.02em;
+      font-weight: 1000;
+    }
+
+    .video-hero-content p{ color: rgba(255,255,255,.82); }
+
+    .video-hero-features{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:2px;
+    }
+
+    .pill{
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.10);
+      backdrop-filter: blur(var(--glass-blur));
+      font-weight: 900;
+      color: rgba(255,255,255,.92);
+      font-size: .95rem;
+    }
+
+    /* ======================
+       Partner
+    ====================== */
+
+    .partner{
+      background: linear-gradient(180deg, rgba(246,246,246,1), rgba(255,255,255,1));
+    }
+
+    .partner-card{
+      border-radius: var(--radius-xl);
+      overflow:hidden;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(17,17,17,.07);
+      background:#fff;
+    }
+
+    .partner-top{
+      position:relative;
+    }
+
+    /* Use same portrait template as Swing/Tubing cards */
+    .partner-video{
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit: cover;
+      object-position:center;
+      aspect-ratio: 1080 / 1920;
+    }
+
+    .partner-card{
+      border-radius: var(--radius-xl);
+      overflow:hidden;
+      position:relative;
+    }
+
+    .partner-top{
+      position:relative;
+      width:100%;
+    }
+
+    .partner-video{
+      background:#000;
+    }
+
+    .partner-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.25) 45%, rgba(0,0,0,.65) 100%);
+      pointer-events:none;
+    }
+
+.partner-body{
+      position:absolute;
+      inset:auto 0 0 0;
+      padding: 18px;
+      color:#fff;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      z-index:2;
+      background: transparent;
+    }
+
+    /* Keep the mobile/phone layout as-is; only adjust for large screens */
+    @media (min-width: 980px){
+      .partner-body{ padding: 22px; }
+      .partner-body h3{ font-size: 1.65rem; }
+    }
+
+    .partner-body h3{ font-size: 1.55rem; letter-spacing:-.02em; font-weight: 1000; }
+
+    .partner-body p{ color: rgba(255,255,255,.82); }
+
+
+
+    /* ======================
+       Why choose
+    ====================== */
+
+    .why-grid{
+      margin-top: 26px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (min-width: 680px){
+      .why-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    .why-item{
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,.9);
+      border: 1px solid rgba(17,17,17,.08);
+      box-shadow: var(--shadow-soft);
+      padding: 14px;
+      transition: transform .22s var(--ease), box-shadow .22s var(--ease);
+    }
+
+    .why-item:hover{ transform: translateY(-4px); box-shadow: var(--shadow-1); }
+
+    .why-ico{
+      width:46px;
+      height:46px;
+      border-radius: 18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(255,122,0,.12);
+      border: 1px solid rgba(255,122,0,.20);
+      color: var(--primary);
+      font-weight: 1000;
+      font-size: 1.25rem;
+    }
+
+    .why-item h4{ margin-top:10px; font-size: 1.02rem; font-weight: 1000; letter-spacing:-.02em; }
+    .why-item p{ margin-top:6px; color: var(--muted); font-weight: 700; }
+
+    /* ======================
+       Gallery Masonry
+    ====================== */
+
+    .masonry{
+      column-count: 2;
+      column-gap: 14px;
+    }
+
+    @media (min-width: 680px){
+      .masonry{ column-count: 3; column-gap: 18px; }
+    }
+
+    .masonry figure{
+      margin: 0 0 14px;
+      break-inside: avoid;
+      border-radius: var(--radius-lg);
+      overflow:hidden;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(17,17,17,.06);
+      background: #fff;
+      transition: transform .22s var(--ease), box-shadow .22s var(--ease);
+    }
+
+    .masonry figure:hover{ transform: translateY(-4px); box-shadow: var(--shadow-1); }
+
+    .masonry img{
+      width:100%;
+      height:auto;
+      display:block;
+      object-fit: cover;
+    }
+
+    /* ======================
+       CTA + Footer
+    ====================== */
+
+    .cta{
+      background: var(--primary);
+      color:#fff;
+      padding: 72px 0;
+      border-top-left-radius: 32px;
+      border-top-right-radius: 32px;
+      margin-top: 24px;
+    }
+
+    .cta-inner{
+      display:grid;
+      gap:16px;
+      align-items:center;
+    }
+
+    .cta h2{
+      font-size: clamp(1.9rem, 6vw, 3rem);
+      font-weight: 1000;
+      letter-spacing:-.02em;
+      margin:0;
+    }
+
+    .cta p{ color: rgba(255,255,255,.88); }
+
+    .cta .cta-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top: 10px;
+    }
+
+    footer{
+      background: var(--dark);
+      color:#fff;
+      padding: 46px 0;
+      margin-top: 0;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    @media (min-width: 900px){
+      .footer-grid{ grid-template-columns: 1.2fr 1fr 1fr; }
+    }
+
+    .footer-brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+
+    .footer-brand .brand-mark{ width:42px; height:42px; }
+
+    .footer-col h4{ margin:0 0 10px; font-weight: 1000; letter-spacing:-.01em; }
+    .footer-links{ display:grid; gap:10px; }
+
+    .footer-links a{
+      color: rgba(255,255,255,.86);
+      font-weight: 800;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      transition: transform .2s var(--ease), background .2s var(--ease);
+    }
+    .footer-links a:hover{ transform: translateY(-2px); background: rgba(255,255,255,.10); }
+
+    .copyright{
+      margin-top: 22px;
+      color: rgba(255,255,255,.68);
+      font-weight: 700;
+    }
+
+    /* ======================
+       Floating WhatsApp
+    ====================== */
+
+    .whatsapp-float{
+      position:fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 1100;
+      width: 60px;
+      height: 60px;
+      border-radius: 999px;
+      background: #25D366;
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size: 24px;
+      box-shadow: 0 16px 50px rgba(37, 211, 102, .35);
+      border: 1px solid rgba(255,255,255,.26);
+      transition: transform .22s var(--ease), box-shadow .22s var(--ease);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .whatsapp-float:hover{ transform: translateY(-3px); box-shadow: 0 22px 70px rgba(37, 211, 102, .42); }
+
+    /* ======================
+       Reduced motion
+    ====================== */
+
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior:auto; }
+      .reveal{ transition:none; }
+      .mouse::after{ animation:none; }
+      .activity-card, .price-card, .why-item, .masonry figure{ transition:none; }
+      .btn{ transition:none; }
+      .slider-item{ transition:none; }
+    }
+  </style>
 </head>
 
 <body>
+  <!-- Transparent Sticky Nav -->
+  <header class="nav" id="top">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="KBaliTOUR Home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-text">KBaliTOUR</span>
+      </a>
 
-<div class="logo">KBaliTOUR</div>
+      <nav class="nav-links" aria-label="Primary">
+        <a class="nav-link" href="#pc-triple">Activities</a>
 
-<section class="hero">
+        <a class="nav-link" href="#atv">ATV</a>
+        <a class="nav-link" href="#rafting">Rafting</a>
+        <a class="nav-link" href="#gallery">Gallery</a>
+      </nav>
 
-<div class="hero-content">
+      <div class="nav-actions">
+        <a class="btn btn-primary btn-sm" href="https://wa.me/6281338334353?text=Hi%20KBaliTOUR!%20I%20want%20to%20travel%20in%20Bali.%20Can%20you%20help%20me%20plan%20my%20trip?" target="_blank" rel="noopener noreferrer">
+          Book Now
+          <span aria-hidden="true">→</span>
+        </a>
 
-<h1>EXPLORE BALI WITH EASE</h1>
+        <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
 
-<p>
-Discover Bali your way with ATV shuttle services,
-rafting adventures, and fully customized tours
-tailored to your needs.
-</p>
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Mobile menu">
+      <a href="#activities">Activities <span aria-hidden="true">↗</span></a>
+      <a href="#atv">ATV <span aria-hidden="true">↗</span></a>
+      <a href="#rafting">Rafting <span aria-hidden="true">↗</span></a>
+      <a href="#gallery">Gallery <span aria-hidden="true">↗</span></a>
+      <a href="https://wa.me/6281338334353?text=Hi%20KBaliTOUR!%20I%20want%20to%20travel%20in%20Bali.%20Can%20you%20help%20me%20plan%20my%20trip?" target="_blank" rel="noopener noreferrer">WhatsApp Booking <span aria-hidden="true">💬</span></a>
+    </div>
+  </header>
 
-<div class="btn-group">
+  <!-- Hero -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero-media" aria-hidden="true"></div>
 
-<a class="btn-primary"
-href="https://wa.me/6281338334353?text=Hi%20KBaliTOUR!%20I%20want%20to%20travel%20in%20Bali.%20Can%20you%20help%20me%20plan%20my%20trip?"
-target="_blank">
-Book via WhatsApp
-</a>
+    <div class="container hero-inner">
+      <div class="hero-card reveal" data-reveal>
+        <span class="kicker">Luxury Adventure • Bali</span>
+        <h1 class="display hero-headline">EXPLORE BALI WITH EASY</h1>
+        <p class="subhead hero-sub">Book with us and get your amazing experience with us.</p>
 
-<a class="btn-secondary" href="#services">
-Explore Services
-</a>
 
-</div>
+        <div class="hero-cta" role="group" aria-label="Hero actions">
+          <a class="btn btn-primary" href="https://wa.me/6281338334353?text=Hi%20KBaliTOUR!%20I%20want%20to%20travel%20in%20Bali.%20Can%20you%20help%20me%20plan%20my%20trip?" target="_blank" rel="noopener noreferrer">
+            <span aria-hidden="true">💬</span>
+            Book via WhatsApp
+          </a>
+          <a class="btn btn-ghost" href="#activities">
+            Explore Activities
+            <span aria-hidden="true">↓</span>
+          </a>
+        </div>
 
-</div>
-</section>
+        <div class="scroll-indicator" aria-hidden="true">
+          <span class="mouse"></span>
+          <span>Scroll</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section class="services" id="services">
+  <!-- Hero + 3 media cards (PC-only side-by-side) -->
+  <section class="section" id="pc-triple" aria-label="PC triple media">
 
-<div class="container">
+    <div class="container">
 
-<div class="section-title">
-<h2>Our Featured Services</h2>
-<p>Comfortable transportation and unforgettable Bali experiences.</p>
-</div>
+      <div class="section-title reveal" data-reveal>
+        <h2>Featured Activities</h2>
+        <p>Premium experiences curated for comfort, thrill, and unforgettable moments.</p>
+      </div>
 
-<div class="cards">
+      <div class="card-grid" role="list">
+        <!-- PC triple row: hide other cards in this section -->
+        <article class="activity-card reveal" data-reveal role="listitem" style="display:none;">
+          <div class="activity-media">
+            <img loading="lazy" decoding="async" src="atvcar.jpg" alt="ATV Ride" />
+          </div>
 
-<div class="card">
-<span>🚐</span>
-<h3>ATV Shuttle Service</h3>
-<p>Comfortable and reliable transportation to ATV adventure locations.</p>
-</div>
+          <div class="activity-body">
+            <h3>ATV Ride</h3>
+            <p>Ride through Bali’s scenic paths with a seamless pickup option.</p>
+            <div class="activity-footer">
+              <span class="tag">Thrill</span>
+              <a class="btn btn-outline btn-sm" href="#atv">Book</a>
+            </div>
+          </div>
+        </article>
 
-<div class="card">
-<span>🌊</span>
-<h3>Rafting Shuttle Service</h3>
-<p>Dedicated transportation service to Bali's best rafting destinations.</p>
-</div>
+        <article class="activity-card reveal" data-reveal role="listitem">
+          <div class="activity-media">
+            <img loading="lazy" decoding="async" src="rafting2.jpeg" alt="White Water Rafting" />
+          </div>
+          <div class="activity-body">
+            <h3>White Water Rafting</h3>
+            <p>Feel the rush with world-class rapids and thoughtful inclusions.</p>
+            <div class="activity-footer">
+              <span class="tag">Adrenaline</span>
+              <a class="btn btn-outline btn-sm" href="#rafting">Book</a>
+            </div>
+          </div>
+        </article>
 
-<div class="card">
-<span>🏝️</span>
-<h3>Custom Bali Tour</h3>
-<p>Create your own itinerary based on your interests, budget, and schedule.</p>
-</div>
+        <article class="activity-card reveal" data-reveal role="listitem">
+          <div class="activity-media">
+            <img loading="lazy" decoding="async" src="swingphoto.png" alt="Swing at Alas Arum Bali" onerror="this.src='geminiatv.jpg';" />
+          </div>
 
-</div>
-</div>
-</section>
+          <div class="activity-body">
+            <h3>Swing</h3>
+            <p>Rice terrace views and jungle vibes—captured in every frame.</p>
+            <div class="activity-footer">
+              <span class="tag">Scenic</span>
+              <a class="btn btn-outline btn-sm" href="#swing">Book</a>
+            </div>
+          </div>
+        </article>
 
-<section class="why-us">
+        <article class="activity-card reveal" data-reveal role="listitem">
+          <div class="activity-media">
+            <img loading="lazy" decoding="async" src="tubing.jpg" alt="Tubing" onerror="this.src='geminiatv.jpg'" />
+          </div>
+          <div class="activity-body">
+            <h3>Tubing</h3>
+            <p>Lazy river fun with a premium experience from start to finish.</p>
+            <div class="activity-footer">
+              <span class="tag">Fun</span>
+              <a class="btn btn-outline btn-sm" href="#tubing">Book</a>
+            </div>
+          </div>
+        </article>
 
-<div class="container">
+        <article class="activity-card reveal" data-reveal role="listitem">
+          <div class="activity-media">
+            <img loading="lazy" decoding="async" src="atvgoa.jpeg" alt="Custom Bali Tour" onerror="this.src='geminiatv.jpg'" />
+          </div>
+          <div class="activity-body">
+            <h3>Custom Bali Tour</h3>
+            <p>Build your own itinerary—fast planning, flexible scheduling.</p>
+            <div class="activity-footer">
+              <span class="tag">Tailored</span>
+              <a class="btn btn-outline btn-sm" href="#cta">Book</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-<div class="section-title">
-<h2>Why Choose KBaliTOUR?</h2>
-</div>
+  <!-- ATV SECTION -->
+  <section class="section" id="atv" aria-label="ATV Section">
+    <div class="container">
+      <div class="section-title reveal" data-reveal>
+        <h2>ATV Ride Packages</h2>
+        <p>Choose your style: with shuttle or without shuttle—both include the essential experience.</p>
+      </div>
 
-<div class="stats">
+      <div class="section-split">
+        <div class="reveal" data-reveal>
+          <div class="media-slider" data-slider="atv" aria-label="ATV image slider">
+            <div class="slider-viewport">
+              <div class="slider-item slider-item--active">
+                <img loading="lazy" decoding="async" src="atvadventure.jpeg" alt="ATV adventure" />
+              </div>
+              <div class="slider-item">
+                <img loading="lazy" decoding="async" src="atvcar.jpg" alt="ATV ride" />
+              </div>
+              <div class="slider-item">
+                <img loading="lazy" decoding="async" src="atvgoa.jpeg" alt="ATV goa" />
+              </div>
+              <div class="slider-item">
+                <img loading="lazy" decoding="async" src="atvgoa2.jpeg" alt="ATV goa view" />
+              </div>
+              <div class="slider-item">
+                <img loading="lazy" decoding="async" src="atvpeople.jpeg" alt="ATV people" />
+              </div>
+            </div>
+            <div class="slider-controls">
+              <button class="slider-btn" type="button" data-prev="atv" aria-label="Previous slide">‹</button>
+              <div class="dots" aria-hidden="true" data-dots="atv">
+                <span class="dot dot--active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+              <button class="slider-btn" type="button" data-next="atv" aria-label="Next slide">›</button>
+            </div>
+          </div>
 
-<div>
-<h3>500+</h3>
-<p>Happy Travelers</p>
-</div>
+          <div style="height:14px;"></div>
 
-<div>
-<h3>24/7</h3>
-<p>Customer Support</p>
-</div>
+          <div class="video-box reveal" data-reveal>
+            <video loading="lazy" controls playsinline preload="metadata" poster="atvadventure.jpeg">
+              <source src="atvwaterfall2.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
 
-<div>
-<h3>100%</h3>
-<p>Private & Flexible</p>
-</div>
+        <div class="reveal" data-reveal>
+          <div class="pricing-grid" role="list">
+            <article class="price-card" role="listitem">
+              <div class="price-head">
+                <h3>ATV Ride with Shuttle</h3>
+                <div class="price-value">
+                  <strong>—</strong>
+                  <span class="included-chip">Included</span>
+                </div>
+              </div>
+              <div class="price-body">
+                <ul class="feature-list">
+                  <li><span class="check">✓</span> Shuttle pickup</li>
+                  <li><span class="check">✓</span> ATV ride</li>
+                  <li><span class="check">✓</span> Safety briefing</li>
+                  <li><span class="check">✓</span> Equipment included</li>
+                </ul>
+                <div style="height:14px;"></div>
+                <a class="btn btn-dark" href="https://wa.me/6281338334353?text=Hi%20KBaliTOUR!%20I%20want%20ATV%20Ride%20with%20Shuttle.%20Please%20help%20me%20plan%20my%20trip?" target="_blank" rel="noopener noreferrer">Book ATV</a>
+              </div>
+            </article>
 
-<div>
-<h3>⭐ 4.9</h3>
-<p>Average Rating</p>
-</div>
+            <article class="price-card" role="listitem">
+              <div class="price-head">
+                <h3>ATV Ride without Shuttle</h3>
+                <div class="price-value">
+                  <strong>—</strong>
+                  <span class="included-chip">Included</span>
+                </div>
+              </div>
+              <div class="price-body">
+                <ul class="feature-list">
+                  <li><span class="check">✓</span> No shuttle pickup</li>
+                  <li><span class="check">✓</span> ATV ride</li>
+                  <li><span class="check">✓</span> Safety briefing</li>
+                  <li><span class="check">✓</span> Equipment included</li>
+                </ul>
+                <div style="height:14px;"></div>
+                <a class="btn btn-dark" href="https://wa.me/6281338334353?text=Hi%20KBaliTOUR!%20I%20want%20ATV%20Ride%20without%20Shuttle.%20Please%20help%20me%20plan%20my%20trip?" target="_blank" rel="noopener noreferrer">Book ATV</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-</div>
-</div>
-</section>
+  <!-- RAFTING SECTION -->
+  <section class="section" id="rafting" aria-label="Rafting Section">
+    <div class="container">
+      <div class="section-title reveal" data-reveal>
+        <h2>White Water Rafting</h2>
+        <p>Comfortable transfers, safety-focused crew, and all the essentials for a premium day on the water.</p>
+      </div>
 
-<section class="cta">
+      <div class="section-split">
+        <div class="reveal" data-reveal>
+          <div class="media-slider" data-slider="rafting" aria-label="Rafting image slider">
+            <div class="slider-viewport">
+              <div class="slider-item slider-item--active"><img loading="lazy" decoding="async" src="rafting3.jpeg" alt="Rafting" /></div>
+              <div class="slider-item"><img loading="lazy" decoding="async" src="rafting2.jpeg" alt="Rafting river" /></div>
+              <div class="slider-item"><img loading="lazy" decoding="async" src="rafting4.jpeg" alt="Rafting adventure" /></div>
+              <div class="slider-item"><img loading="lazy" decoding="async" src="rafting5.jpeg" alt="Rafting crew" /></div>
+            </div>
+            <div class="slider-controls">
+              <button class="slider-btn" type="button" data-prev="rafting" aria-label="Previous slide">‹</button>
+              <div class="dots" aria-hidden="true" data-dots="rafting">
+                <span class="dot dot--active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+              <button class="slider-btn" type="button" data-next="rafting" aria-label="Next slide">›</button>
+            </div>
+          </div>
 
-<h2>Ready For Your Bali Adventure?</h2>
+          <div style="height:14px;"></div>
 
-<p>
-Contact us today and create your perfect Bali experience.
-</p>
+          <div class="video-box reveal" data-reveal>
+            <video loading="lazy" controls playsinline preload="metadata" poster="rafting2.jpeg">
+              <source src="rafting1.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
 
-<a href="https://wa.me/6281338334353?text=Hi%20KBaliTOUR!%20I%20want%20to%20travel%20in%20Bali.%20Can%20you%20help%20me%20plan%20my%20trip?"
-target="_blank">
-WhatsApp Booking
-</a>
+        <div class="reveal" data-reveal>
+          <div class="pricing-grid" role="list">
+            <article class="price-card" role="listitem">
+              <div class="price-head">
+                <h3>White Water Rafting</h3>
+                <div class="price-value">
+                  <strong>350K</strong>
+                  <span class="included-chip">Included</span>
+                </div>
+              </div>
+              <div class="price-body">
+                <ul class="feature-list">
+                  <li><span class="check">✓</span> Own Transport</li>
+                  <li><span class="check">✓</span> Rafting</li>
+                  <li><span class="check">✓</span> Lunch</li>
+                  <li><span class="check">✓</span> Insurance</li>
+                  <li><span class="check">✓</span> Locker</li>
+                  <li><span class="check">✓</span> Equipment</li>
+                </ul>
+                <div style="height:14px;"></div>
+                <a class="btn btn-dark" href="https://wa.me/6281338334353?text=Hi%20KBaliTOUR!%20I%20want%20White%20Water%20Rafting%20(350K)%20with%20Own%20Transport.%20Please%20help%20me%20plan%20my%20trip?" target="_blank" rel="noopener noreferrer">Book Rafting</a>
+              </div>
+            </article>
 
-</section>
+            <article class="price-card" role="listitem">
+              <div class="price-head">
+                <h3>Private Ubud Transfer</h3>
+                <div class="price-value">
+                  <strong>450K</strong>
+                  <span class="included-chip">Included</span>
+                </div>
+              </div>
+              <div class="price-body">
+                <ul class="feature-list">
+                  <li><span class="check">✓</span> Pickup</li>
+                  <li><span class="check">✓</span> Rafting</li>
+                  <li><span class="check">✓</span> Lunch</li>
+                  <li><span class="check">✓</span> Insurance</li>
+                  <li><span class="check">✓</span> Locker</li>
+                  <li><span class="check">✓</span> Equipment</li>
+                </ul>
+                <div style="height:14px;"></div>
+                <a class="btn btn-dark" href="https://wa.me/6281338334353?text=Hi%20KBaliTOUR!%20I%20want%20Private%20Ubud%20Transfer%20(450K).%20Please%20help%20me%20plan%20my%20trip?" target="_blank" rel="noopener noreferrer">Book Rafting</a>
+              </div>
+            </article>
 
-<footer>
-<h3>KBaliTOUR</h3>
-<p>Your Trusted Bali Travel Partner</p>
-<p>© 2026 KBaliTOUR. All Rights Reserved.</p>
-</footer>
+            <article class="price-card" role="listitem">
+              <div class="price-head">
+                <h3>Outside Ubud Transfer</h3>
+                <div class="price-value">
+                  <strong>520K</strong>
+                  <span class="included-chip">Included</span>
+                </div>
+              </div>
+              <div class="price-body">
+                <ul class="feature-list">
+                  <li><span class="check">✓</span> Pickup</li>
+                  <li><span class="check">✓</span> Rafting</li>
+                  <li><span class="check">✓</span> Lunch</li>
+                  <li><span class="check">✓</span> Insurance</li>
+                  <li><span class="check">✓</span> Locker</li>
+                  <li><span class="check">✓</span> Equipment</li>
+                </ul>
+                <div style="height:14px;"></div>
+                <a class="btn btn-dark" href="https://wa.me/6281338334353?text=Hi%20KBaliTOUR!%20I%20want%20Outside%20Ubud%20Transfer%20(520K).%20Please%20help%20me%20plan%20my%20trip?" target="_blank" rel="noopener noreferrer">Book Rafting</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<a class="whatsapp-float"
-href="https://wa.me/6281338334353?text=Hi%20KBaliTOUR!%20I%20want%20to%20travel%20in%20Bali.%20Can%20you%20help%20me%20plan%20my%20trip?"
-target="_blank">
-💬
-</a>
+  <!-- SWING SECTION -->
+  <section class="section" id="swing" aria-label="Swing Section">
+    <div class="container">
+      <div class="section-title reveal" data-reveal>
+        <h2>Swing at Alas Arum Bali</h2>
+        <p>Scenic rice-terrace and jungle views—an elegant way to enjoy your Bali moments.</p>
+      </div>
 
+      <div class="video-hero video-hero--swing reveal" data-reveal>
+
+        <video loading="lazy" autoplay muted loop playsinline preload="metadata" class="video-hero-media video-hero--portrait">
+          <source src="swing.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+
+
+        <div class="video-hero-content">
+          <h3>Swing</h3>
+          <div class="video-hero-features" aria-label="Swing features">
+            <span class="pill">Rice Terrace View</span>
+            <span class="pill">Jungle View</span>
+            <span class="pill">Premium Moments</span>
+          </div>
+          <p>Turn your Bali day into a cinematic experience. Perfect for photos and unforgettable memories.</p>
+          <a class="btn btn-primary" href="https://wa.me/6281338334353?text=Hi%20KBaliTOUR!%20I%20want%20Swing%20at%20Alas%20Arum%20Bali.%20Please%20help%20me%20plan%20my%20trip?" target="_blank" rel="noopener noreferrer">
+            Book Swing
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TUBING SECTION -->
+  <section class="section" id="tubing" aria-label="Tubing Section">
+    <div class="container">
+      <div class="section-title reveal" data-reveal>
+        <h2>Tubing Adventure</h2>
+        <p>Relaxed thrill with river views—rounded, premium, and perfectly paced.</p>
+      </div>
+
+      <div class="video-hero reveal" data-reveal>
+        <video loading="lazy" autoplay muted loop playsinline preload="metadata">
+          <source src="tubing.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        <div class="video-hero-content">
+          <h3>Tubing</h3>
+          <p>Enjoy tubing in Bali with a smooth, premium booking experience via WhatsApp.</p>
+          <a class="btn btn-primary" href="https://wa.me/6281338334353?text=Hi%20KBaliTOUR!%20I%20want%20Tubing%20adventure.%20Please%20help%20me%20plan%20my%20trip?" target="_blank" rel="noopener noreferrer">
+            Book Tubing
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Adventure Partner -->
+  <section class="section partner" aria-label="Adventure Partner">
+    <div class="container">
+      <div class="section-title reveal" data-reveal>
+        <h2>Adventure Partner</h2>
+        <p>Collaboration with trusted local teams for consistent, high-quality experiences.</p>
+      </div>
+
+      <div class="partner-card video-hero reveal" data-reveal>
+        <div class="partner-top">
+          <video class="partner-video video-hero-media" loading="lazy" autoplay muted loop playsinline preload="metadata">
+            <source src="suryabintang.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="partner-body">
+          <h3>Surya Bintang Adventure</h3>
+          <p>Trusted Bali Adventure Partner</p>
+          <a class="btn btn-primary" href="https://wa.me/6281338334353?text=Hi%20KBaliTOUR!%20I%20want%20to%20book%20Surya%20Bintang%20Adventure.%20Please%20help%20me%20plan%20my%20trip?" target="_blank" rel="noopener noreferrer">
+            Book Now
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Why Choose KBaliTOUR -->
+  <section class="section" aria-label="Why Choose KBaliTOUR">
+    <div class="container">
+      <div class="section-title reveal" data-reveal>
+        <h2>Why Choose KBaliTOUR</h2>
+        <p>Luxury service, local expertise, and premium adventure support.</p>
+      </div>
+
+      <div class="why-grid" role="list">
+        <div class="why-item reveal" data-reveal role="listitem">
+          <div class="why-ico" aria-hidden="true">🔒</div>
+          <h4>Private Tour</h4>
+          <p>Comfort-first scheduling.</p>
+        </div>
+        <div class="why-item reveal" data-reveal role="listitem">
+          <div class="why-ico" aria-hidden="true">🧑‍✈️</div>
+          <h4>Professional Driver</h4>
+          <p>Safe & reliable transfers.</p>
+        </div>
+        <div class="why-item reveal" data-reveal role="listitem">
+          <div class="why-ico" aria-hidden="true">🗓️</div>
+          <h4>Flexible Schedule</h4>
+          <p>Plan around your day.</p>
+        </div>
+        <div class="why-item reveal" data-reveal role="listitem">
+          <div class="why-ico" aria-hidden="true">🏷️</div>
+          <h4>Best Price</h4>
+          <p>Transparent, fair value.</p>
+        </div>
+        <div class="why-item reveal" data-reveal role="listitem">
+          <div class="why-ico" aria-hidden="true">🌿</div>
+          <h4>Local Experience</h4>
+          <p>Real Bali expertise.</p>
+        </div>
+        <div class="why-item reveal" data-reveal role="listitem">
+          <div class="why-ico" aria-hidden="true">💬</div>
+          <h4>24/7 Support</h4>
+          <p>WhatsApp-first assistance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="section" id="gallery" aria-label="Gallery">
+    <div class="container">
+      <div class="section-title reveal" data-reveal>
+        <h2>Gallery</h2>
+        <p>Moments from ATV, rafting, swing, and Bali’s best scenic spots.</p>
+      </div>
+
+      <div class="masonry reveal" data-reveal>
+        <figure><img loading="lazy" decoding="async" src="geminiatv.jpg" alt="KBaliTOUR gallery 1" /></figure>
+        <figure><img loading="lazy" decoding="async" src="atvcar.jpg" alt="KBaliTOUR gallery 2" /></figure>
+        <figure><img loading="lazy" decoding="async" src="atvadventure.jpeg" alt="KBaliTOUR gallery 3" /></figure>
+        <figure><img loading="lazy" decoding="async" src="atvgoa.jpeg" alt="KBaliTOUR gallery 4" /></figure>
+        <figure><img loading="lazy" decoding="async" src="atvgoa2.jpeg" alt="KBaliTOUR gallery 5" /></figure>
+        <figure><img loading="lazy" decoding="async" src="atvpeople.jpeg" alt="KBaliTOUR gallery 6" /></figure>
+        <figure><img loading="lazy" decoding="async" src="rafting2.jpeg" alt="KBaliTOUR gallery 7" /></figure>
+        <figure><img loading="lazy" decoding="async" src="rafting3.jpeg" alt="KBaliTOUR gallery 8" /></figure>
+        <figure><img loading="lazy" decoding="async" src="rafting4.jpeg" alt="KBaliTOUR gallery 9" /></figure>
+        <figure><img loading="lazy" decoding="async" src="rafting5.jpeg" alt="KBaliTOUR gallery 10" /></figure>
+        <figure><img loading="lazy" decoding="async" src="atvwaterfall2.mp4" alt="KBaliTOUR gallery video frame" onerror="this.remove();" /></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="cta" aria-label="Call To Action">
+    <div class="container cta-inner">
+      <div class="reveal" data-reveal>
+        <h2>Ready For Your Bali Adventure?</h2>
+        <p>Book in minutes via WhatsApp and get a smooth plan for your perfect day.</p>
+      </div>
+
+      <div class="cta-actions reveal" data-reveal>
+        <a class="btn btn-outline" href="https://wa.me/6281338334353?text=Hi%20KBaliTOUR!%20I%20want%20to%20travel%20in%20Bali.%20Can%20you%20help%20me%20plan%20my%20trip?" target="_blank" rel="noopener noreferrer" style="display:inline-flex;">
+          <span aria-hidden="true">💬</span>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer aria-label="Footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <div>
+              <div style="font-weight:1000; letter-spacing:-.02em; font-size:1.15rem;">KBaliTOUR</div>
+              <div style="color: rgba(255,255,255,.72); font-weight:750; margin-top:6px;">Tour & Travel in Bali</div>
+            </div>
+          </div>
+          <div class="copyright">© <span id="year"></span> KBaliTOUR. All Rights Reserved.</div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="#activities">Activities</a>
+            <a href="#atv">ATV</a>
+            <a href="#rafting">Rafting</a>
+            <a href="#gallery">Gallery</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <div class="footer-links">
+            <a href="https://wa.me/6281338334353?text=Hi%20KBaliTOUR!%20I%20want%20to%20travel%20in%20Bali.%20Can%20you%20help%20me%20plan%20my%20trip?" target="_blank" rel="noopener noreferrer">WhatsApp Booking</a>
+            <a href="#cta">Book Now</a>
+            <a href="#" onclick="return false;">Instagram</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a class="whatsapp-float" href="https://wa.me/6281338334353?text=Hi%20KBaliTOUR!%20I%20want%20to%20travel%20in%20Bali.%20Can%20you%20help%20me%20plan%20my%20trip?" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+    💬
+  </a>
+
+  <script>
+    (function(){
+      'use strict';
+
+      const MOBILE_BREAKPOINT = 980;
+
+      // Year
+      document.getElementById('year').textContent = String(new Date().getFullYear());
+
+      // Sticky transparent -> glass after scroll
+      const nav = document.querySelector('.nav');
+      const onScroll = () => {
+        const scrolled = window.scrollY > 18;
+        nav.classList.toggle('nav--scrolled', scrolled);
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      // Mobile menu
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const setExpanded = (expanded) => {
+        hamburger.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        mobileMenu.classList.toggle('mobile-menu--open', expanded);
+      };
+      hamburger.addEventListener('click', () => {
+        const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+        setExpanded(!expanded);
+      });
+      mobileMenu.addEventListener('click', (e) => {
+        const a = e.target.closest('a');
+        if(a) setExpanded(false);
+      });
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape') setExpanded(false);
+      });
+      window.addEventListener('resize', () => {
+        if(window.innerWidth >= MOBILE_BREAKPOINT) setExpanded(false);
+      });
+
+      // IntersectionObserver reveal
+      const revealEls = Array.from(document.querySelectorAll('[data-reveal]'));
+      const io = new IntersectionObserver((entries) => {
+        for(const entry of entries){
+          if(entry.isIntersecting){
+            entry.target.classList.add('reveal--in');
+            io.unobserve(entry.target);
+          }
+        }
+      }, { threshold: 0.14 });
+      revealEls.forEach(el => io.observe(el));
+
+      // Sliders (vanilla)
+      function initSlider(name){
+        const root = document.querySelector(`[data-slider="${name}"]`);
+        if(!root) return;
+
+        const items = Array.from(root.querySelectorAll('.slider-item'));
+        const dots = Array.from(root.querySelectorAll(`[data-dots="${name}"] .dot`));
+        const prevBtn = document.querySelector(`[data-prev="${name}"]`);
+        const nextBtn = document.querySelector(`[data-next="${name}"]`);
+        if(!items.length) return;
+
+        let index = 0;
+
+        const go = (nextIndex) => {
+          index = (nextIndex + items.length) % items.length;
+          items.forEach((it, i) => it.classList.toggle('slider-item--active', i === index));
+          dots.forEach((d, i) => d.classList.toggle('dot--active', i === index));
+        };
+
+        prevBtn && prevBtn.addEventListener('click', () => go(index - 1));
+        nextBtn && nextBtn.addEventListener('click', () => go(index + 1));
+
+        // Autoplay (gentle) for mobile UX
+        let timer = null;
+        const start = () => {
+          stop();
+          timer = window.setInterval(() => go(index + 1), 4200);
+        };
+        const stop = () => {
+          if(timer) window.clearInterval(timer);
+          timer = null;
+        };
+        start();
+
+        root.addEventListener('mouseenter', stop);
+        root.addEventListener('mouseleave', start);
+        root.addEventListener('touchstart', stop, { passive: true });
+      }
+
+      initSlider('atv');
+      initSlider('rafting');
+
+    })();
+  </script>
 </body>
 </html>
 
